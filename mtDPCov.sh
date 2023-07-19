@@ -8,12 +8,13 @@ DirRaw=(path/to/your/bam/files)
 ### SAMTOOLS
 ### this script allows to extract reads mapping over the mitochondiral chromosome
 ### it also allows to extract the average coverage and depth of each sample in the output file BWA6DepthCoverageMT.out
+### /!\ The bams need to be sorted and indexed 
 source /local/env/envsamtools-1.15.sh #<-- /!\ change here the path to the samtool software / environment
 ################################
 
 for file in ${DirRaw}*.bam; do
 	name=${file##*/}
-	id=${name%_{you can put here everything you dont want in the name}.bam} # <-- /!\
+	id=${name%_*.bam} # <-- /!\change the * into the part of the name you don't want to keep
 
     samtools view $DirRaw${id}*.bam MT -o ${id}_MT.bam
     samtools coverage ${id}_MT.bam > ${id}_samcoverage.txt
