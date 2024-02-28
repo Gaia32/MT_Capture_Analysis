@@ -25,7 +25,7 @@ from Bio import SeqIO
 
 ######################################################################
 def changeSeqIDs(infile,outfile,names):
-    '''In the next function, we create a dictionnary composed of "oldName : newName".
+    '''In the next function, we read a table given in input containing one column with the old names and the second column with the new names. Then we create a dictionnary composed of "oldName : newName". 
     For each sequence id, we look for it in the dict, then we replace the 
     record.id with the corresponding newID'''
     namesHandler = {}
@@ -47,4 +47,3 @@ def changeSeqIDs(infile,outfile,names):
         # write the whole thing out
     SeqIO.write(new_seq, output_file, 'fasta')
     
-changeSeqIDs("noNalignednew_480seqs.fasta","newID_aligned480sequences.fasta","newNames.txt")

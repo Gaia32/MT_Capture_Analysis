@@ -23,11 +23,4 @@ for file in /groups/Paleogenomics/DOG/Capture_nucleaire/annee1-CROC_CAPTURE_JAN2
 	samtools depth  $file  |  awk '{sum+=$3} END { print "Average = ",sum/NR}' >> res.txt
 	samtools stats $file  | grep ^COV | cut -f 2- >> res.txt
 
-	#mapped reads MT
-	awk 'FNR==1 {print $1}' ${sample_tag}_flagstat_mappedQ25_MT.sorted.txt >> res.txt
-	#Average coverage total
-	cat {sample_tag}_samcoverage_mappedQ25.txt | awk '{sum+=$6} END { print "Average = ",sum/NR}' >> res.txt
-	#Average depth total
-	cat ${sample_tag}_samcoverage_mappedQ25.txt | awk '{sum+=$7} END { print "Average = ",sum/NR}' >> res.txt
-
 done
