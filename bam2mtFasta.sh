@@ -10,6 +10,8 @@
 source /local/env/envsamtools-1.15.sh
 ################################
 
+DirBams=/path/to/your/bams
+
 for file in ${DirBams}*_aln_samse_mappedQ25.sorted.bam; do
 	name=${file##*/}
 	id=${name%_aln_samse_*}
@@ -22,7 +24,7 @@ done
 ### /!\ WARNING: do not put extention to the -out
 
 source /local/env/envconda.sh
-conda activate /groups/Paleogenomics/ENV/angsd
+conda activate /path/to/angsd_env # version 0.940-dirty (htslib: 1.17)
 
 for file in ${DirBams}*sorted.bam; do 
 	name=${file##*/}
@@ -42,7 +44,7 @@ done
 
 ################################################################################
 # At this point we can use Mitotoolpy to find the haplogroup. Mitotoolpy runs on the computer
-Mitotoolpy="C:/Users/Gaia/Desktop/Mahaut/UNIV/COURS/ENVs/MitoToolPy_Win/mitotoolpy-seq.py"
+Mitotoolpy="path/to/mitotoolpy-seq.py"
 
 for file in ${DirFasta}*_dF3_minDP3_minMQ30.fa; do 
 	name=${file##*/} 
