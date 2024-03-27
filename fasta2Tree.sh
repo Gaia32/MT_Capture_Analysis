@@ -12,8 +12,8 @@
 #########################################################################################
 #########################################################################################
 
-dir="/groups/Paleogenomics/DOG/Captures/MITO/2_consensus_fasta/Fastas/" # on prend les fasta individuels
-dirout="/groups/Paleogenomics/DOG/Captures/MITO/3_multiFastas/CROCWOOF/" # on créer les multifasta par projet
+dir="/path/to/the/Fastas/" # on prend les fasta individuels
+dirout="/path/for/the/output/files" # on créer les multifasta par projet
 
 for suffix in "CROC1" "CROC2" "CROC3" "WOOF" ; do # on itere sur les suffixes
     if [ -f $dirout${suffix}_multiFasta.fa ] ; then # si le fichier multifasta existe on le supprime
@@ -59,10 +59,10 @@ python handleMultiFasta.py # we use the "getSpecificSamples" funtion
 #######################################################
 # next we want to trim the sites where we don't have a lot of informlation: e.g. sites with a lot of gaps
 source /local/env/envconda.sh
-conda activate /groups/Paleogenomics/ENV/trimal 
+conda activate /path/to/ENV/trimal 
 
- trimal -in /groups/Paleogenomics/DOG/Captures/MITO/3_multiFastas/newID_aligned480sequences.fasta \
- -out /groups/Paleogenomics/DOG/Captures/MITO/4_trimal/gt6_newID_aligned480sequences.fasta \
+ trimal -in /path/to/the/alignedsequences.fasta \
+ -out /path/to/the/trimed/gt6_newID_alignedsequences.fasta \
  -gt 0.6
 
 ################################# OPTIONS
@@ -72,11 +72,11 @@ conda activate /groups/Paleogenomics/ENV/trimal
 ################################################ IQTREE
 # Now we will build the tree using iqtree
 source /local/env/envconda.sh
-conda activate /groups/Paleogenomics/ENV/iqtree 
+conda activate /path/to/ENV/iqtree 
 
 iqtree -s input -m MF #this will only find the best model, no tree building (modelfinder)
 #then, when the model is found (here TN+F+I+I+R5, according to  BIC criterion), we can run iqtree
-iqtree -s /groups/Paleogenomics/DOG/Captures/MITO/4_trimal/gt6_newID_aligned480sequences.fasta\
+iqtree -s /path/to/the/trimed/gt6_newID_alignedsequences.fasta\
     --prefix 480samples_Ubt100_gt6 \
     -m TN+F+I+I+R5 -b 1000 -nt AUTO
 
