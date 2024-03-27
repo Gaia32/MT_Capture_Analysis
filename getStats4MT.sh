@@ -10,7 +10,7 @@ source /local/env/envsamtools-1.15.sh
 
 rm res.txt	
 
-for file in /groups/Paleogenomics/DOG/Capture_nucleaire/annee1-CROC_CAPTURE_JAN2021/MO_results_capture_good_2/*_sort_fixmate_sorted.bam ; do
+for file in /path/to/your/sorted.bam ; do
   	name=${file##*/}
 	sample_tag=${name%_sort_fixmate_sorted.bam} # deja filtr� sur la qual
 	echo "Sample "$sample_tag >> res.txt
